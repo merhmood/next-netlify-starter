@@ -12,6 +12,8 @@ export default function Home({posts}) {
           const {displayName} = post.author;
           const {url} = post.author.image;
 
+          //reformating the published string
+          
           const publishedStringReformat = (string) => {
 
             const stringFormatSet = [];

@@ -9,7 +9,7 @@ export default function NewsDetail({ post }) {
         return false;
     else
         str = str.toString();
-    return str.replace( /(<([^>]+)>)/ig, '');
+    return str.replace( /(<([^>&]+)>)/ig, '');
   }
   const contentStripString = removeTags(content)
 
@@ -17,7 +17,7 @@ export default function NewsDetail({ post }) {
     <div>
       <main>
         <h3>{title}</h3>
-        <p> {contentStripString} </p>
+        <p style={{width: "85%", textAlign: "center"}}> {contentStripString} </p>
       </main>
       <Footer />
     </div>
