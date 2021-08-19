@@ -9,7 +9,7 @@ export default function NewsDetail({ post }) {
         return false;
     else
         str = str.toString();
-    return str.replace( /(<([^>&]+)>)/ig, '');
+    return str.replace( /(<([^>]+)>)/ig, '');
   }
   const contentStripString = removeTags(content)
 
