@@ -30,27 +30,13 @@ export async function getStaticPaths() {
     const sortedPost = posts.items.sort(function (a, b) {
         return a.published - b.published;
     })
-  const recentPosts = [];
-
-  //we want only the first three posts to be generated on build times 
-  // and the rest posts to be generated only on request
-
-  for (let index = 0; index < 3; index++) {
-      recentPosts.push(sortedPost[index]);
-      
-  }
+  const recentPosts = [sortedPost[0]];
 
   const paths = recentPosts.map((post) => ({
     params: { id: post.id.toString() },
   }));
 
   /*
-  console.log(paths)
-  [
-    { params: { id: '1' } },
-    { params: { id: '2' } },
-    { params: { id: '3' } }
-  ]
   The paths above will be generated at build time
   */
 
