@@ -1,23 +1,23 @@
 import Footer from "@components/Footer";
 
 export default function NewsDetail({ post }) {
+  const { title, content } = post;
 
- const {title, content} = post
-
-   function removeTags(str) {
-    if ((str===null) || (str===''))
-        return false;
-    else
-        str = str.toString();
-    return str.replace( /(<([^>]+)>)/ig, '');
+  function removeTags(str) {
+    if (str === null || str === "") return false;
+    else str = str.toString();
+    return str.replace(/(<([^>]+)>)/gi, "");
   }
-  const contentStripString = removeTags(content)
+  const contentStripString = removeTags(content);
 
   return (
-    <div>
+    <div className="id-post">
       <main>
-        <h3>{title}</h3>
-        <p style={{width: "85%", textAlign: "center"}}> {contentStripString} </p>
+        <h1>{title}</h1>
+        <p style={{ width: "100%", textAlign: "center" }}>
+          {" "}
+          {contentStripString}{" "}
+        </p>
       </main>
       <Footer />
     </div>
@@ -25,11 +25,13 @@ export default function NewsDetail({ post }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://www.googleapis.com/blogger/v3/blogs/2399953/posts?key=AIzaSyDGNC0zC-0HtxKxYM0VbMPFlAhENnGWgNY");
+  const res = await fetch(
+    "https://www.googleapis.com/blogger/v3/blogs/2399953/posts?key=AIzaSyDGNC0zC-0HtxKxYM0VbMPFlAhENnGWgNY"
+  );
   const posts = await res.json();
-    const sortedPost = posts.items.sort(function (a, b) {
-        return a.published - b.published;
-    })
+  const sortedPost = posts.items.sort(function (a, b) {
+    return a.published - b.published;
+  });
   const recentPosts = [sortedPost[0]];
 
   const paths = recentPosts.map((post) => ({
@@ -40,11 +42,13 @@ export async function getStaticPaths() {
   The paths above will be generated at build time
   */
 
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }
 
-export async function getStaticProps({params}) {
-  const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/2399953/posts/${params.id}?key=AIzaSyDGNC0zC-0HtxKxYM0VbMPFlAhENnGWgNY`)
+export async function getStaticProps({ params }) {
+  const res = await fetch(
+    `https://www.googleapis.com/blogger/v3/blogs/2399953/posts/${params.id}?key=AIzaSyDGNC0zC-0HtxKxYM0VbMPFlAhENnGWgNY`
+  );
   const post = await res.json();
   return {
     props: {
