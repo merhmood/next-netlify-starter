@@ -59,3 +59,10 @@ code {
 .id-post main p {
   margin-top: 3em;
 }
+
+@media screen and (max-width: 500px){
+  .index_post{
+    display: flex;
+    flex-direction: column;
+  }
+}

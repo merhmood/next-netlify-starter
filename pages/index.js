@@ -35,8 +35,8 @@ export default function Home({ posts }) {
 
           return (
             <div key={id} className="post">
-              <div className="">
-                <div className="">
+              <div>
+                <div>
                   <img src={url} alt="postImage" />
                   <Link href={`/${id}`}>
                     <a>

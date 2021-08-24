@@ -15,8 +15,7 @@ export default function NewsDetail({ post }) {
       <main>
         <h1>{title}</h1>
         <p style={{ width: "100%", textAlign: "center" }}>
-          {" "}
-          {contentStripString}{" "}
+          {contentStripString}
         </p>
       </main>
       <Footer />
